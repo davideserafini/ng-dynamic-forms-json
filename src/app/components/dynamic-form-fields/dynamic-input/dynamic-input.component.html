@@ -1,0 +1,11 @@
+<div [formGroup]="formGroup">
+  <label [for]="fieldConfig.name">
+    {{ fieldConfig.label }}
+  </label>
+  <input [id]="fieldConfig.name" [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType">
+
+  <div *ngFor="let validation of fieldConfig.validations">
+    <div *ngIf="formGroup.get(fieldConfig.name).hasError(validation.name) &&
+                formGroup.touched">{{ validation.message }}</div>
+  </div>
+</div>

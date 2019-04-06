@@ -1,0 +1,12 @@
+<div [formGroup]="formGroup">
+  <label [for]="fieldConfig.name">
+    {{ fieldConfig.label }}
+  </label>
+  <select [id]="fieldConfig.name" [formControlName]="fieldConfig.name">
+    <option *ngFor="let option of fieldConfig.options" [value]="option.value">{{ option.text }}</option>
+  </select>
+
+  <div *ngFor="let validation of fieldConfig.validations">
+    <div *ngIf="formGroup.get(fieldConfig.name).hasError(validation.name)">{{validation.message}}</div>
+  </div>
+</div>
