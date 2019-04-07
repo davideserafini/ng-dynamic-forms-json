@@ -7,6 +7,7 @@ export interface DynamicFormFieldConfig {
   type: string;
   name: string;
   value: string;
+  placeholder?: string;
   validations?: Validation[];
 
   // Fields for inputs

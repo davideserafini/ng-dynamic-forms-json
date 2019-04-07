@@ -16,12 +16,13 @@ export class AppComponent {
     name: 'name',
     value: '',
     inputType: 'text',
+    placeholder: 'FVG Dev',
     validations: [{
       name: 'required',
       message: 'Name is required'
     }, {
-      name: 'minLength',
-      message: 'Name is to short',
+      name: 'minlength',
+      message: 'Name is too short',
       value: 5
     }],
   }, {
@@ -30,12 +31,23 @@ export class AppComponent {
     name: 'email',
     value: '',
     inputType: 'email',
+    placeholder: 'community@fvg.dev',
     validations: [{
       name: 'required',
       message: 'Email is required'
     }, {
       name: 'email',
       message: 'Email format is not correct'
+    }],
+  }, {
+    label: 'Password',
+    type: 'input',
+    name: 'password',
+    value: '',
+    inputType: 'password',
+    validations: [{
+      name: 'required',
+      message: 'Password is required'
     }],
   }, {
     label: 'Role',

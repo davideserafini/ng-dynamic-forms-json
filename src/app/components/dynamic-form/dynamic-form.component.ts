@@ -24,34 +24,34 @@ export class DynamicFormComponent implements OnInit {
 
   createDynamicFormGroup(formConfig: DynamicFormFieldConfig[], formGroup: FormGroup): FormGroup {
     formConfig.forEach((fieldConfig: DynamicFormFieldConfig) => {
-      fieldConfig = fieldConfig as DynamicFormFieldConfig;
-      const formControl = this.formBuilder.control(
-        fieldConfig.value,
-        this.addValidation(fieldConfig.validations)
-      );
-      formGroup.addControl(fieldConfig.name, formControl);
+      if (fieldConfig.type !== 'button') {
+        const formControl = this.formBuilder.control(
+          fieldConfig.value,
+          this.addValidation(fieldConfig.validations)
+        );
+        formGroup.addControl(fieldConfig.name, formControl);
+      }
     });
-
     return formGroup;
   }
 
   addValidation(validations: Validation[] = []) {
     const validatorsList: ValidatorFn[] = [];
     validations.forEach(validation => {
-      const key = validation.name;
+      const name = validation.name;
       const value = validation.value;
 
-      switch (key) {
+      switch (name) {
         case 'required':
         case 'email':
-          validatorsList.push(Validators[key]);
+          validatorsList.push(Validators[name]);
           break;
-        case 'minLength':
+        case 'minlength':
           validatorsList.push(Validators.minLength(value as number));
           break;
       }
     });
-    return Validators.compose(validatorsList);
+    return validatorsList;
   }
 
   onSubmit() {

@@ -2,7 +2,7 @@
   <label [for]="fieldConfig.name">
     {{ fieldConfig.label }}
   </label>
-  <input [id]="fieldConfig.name" [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType">
+  <input [id]="fieldConfig.name" [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType" [placeholder]="fieldConfig.placeholder || ''">
 
   <div *ngFor="let validation of fieldConfig.validations">
     <div *ngIf="formGroup.get(fieldConfig.name).hasError(validation.name) &&
