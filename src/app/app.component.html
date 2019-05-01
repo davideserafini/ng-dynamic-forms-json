@@ -1,6 +1,6 @@
 <div class="form-wrapper">
   <div class="form">
-    <app-classic-form (submitted)="displayValues($event)"></app-classic-form>
+    <app-dynamic-form (submitted)="displayValues($event)" [config]="formConfigurationJson"></app-dynamic-form>
   </div>
   <div class="log">
     <pre>

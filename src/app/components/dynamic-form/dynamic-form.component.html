@@ -1,0 +1,38 @@
+<form [formGroup]="form" (submit)="onSubmit()" class="form-wrapper">
+  <div class="form-row" *ngFor="let fieldConfig of config">
+    <ng-container *ngIf="fieldConfig.type === 'input'">
+      <label [for]="fieldConfig.name" *ngIf="fieldConfig.label">
+        {{ fieldConfig.label }}
+      </label>
+
+      <input *ngIf="fieldConfig.inputType !== 'radio'" [id]="fieldConfig.name" [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType" [placeholder]="fieldConfig.placeholder || ''">
+      <ng-container *ngIf="fieldConfig.inputType === 'radio'">
+        <label *ngFor="let option of fieldConfig.options">
+          <input [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType" [value]="option.value">{{ option.text }}
+        </label>
+      </ng-container>
+
+      <div *ngFor="let validation of fieldConfig.validations">
+        <div *ngIf="form.get(fieldConfig.name).hasError(validation.name) &&
+                    form.touched" class="errorMessage">{{ validation.message }}</div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="fieldConfig.type === 'select'">
+      <label [for]="fieldConfig.name" *ngIf="fieldConfig.label">
+        {{ fieldConfig.label }}
+      </label>
+
+      <select *ngIf="fieldConfig.type === 'select'" [id]="fieldConfig.name" [formControlName]="fieldConfig.name">
+        <option *ngFor="let option of fieldConfig.options" [value]="option.value">{{ option.text }}</option>
+      </select>
+
+      <div *ngFor="let validation of fieldConfig.validations">
+        <div *ngIf="form.get(fieldConfig.name).hasError(validation.name) &&
+                    form.touched" class="errorMessage">{{ validation.message }}</div>
+      </div>
+    </ng-container>
+
+    <button type="submit" *ngIf="fieldConfig.type === 'button'">{{ fieldConfig.label }}</button>
+  </div>
+</form>

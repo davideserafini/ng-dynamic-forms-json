@@ -3,12 +3,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ClassicFormComponent } from './components/classic-form/classic-form.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClassicFormComponent,
+    DynamicFormComponent,
   ],
   imports: [
     BrowserModule,

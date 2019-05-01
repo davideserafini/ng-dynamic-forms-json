@@ -1,7 +1,7 @@
 import { Option } from './option';
 import { Validation } from './validation';
 
-export interface FormFieldConfig {
+export interface DynamicFormFieldConfig {
   // Fields for any form field
   label: string;
   type: string;

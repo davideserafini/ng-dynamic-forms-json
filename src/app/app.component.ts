@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormFieldConfig } from './models/form-field-config';
+import { DynamicFormFieldConfig } from './models/dynamic-form-field-config';
 
 
 @Component({
@@ -10,65 +10,69 @@ import { FormFieldConfig } from './models/form-field-config';
 export class AppComponent {
   formValues: string;
 
-  formConfigurationJson: FormFieldConfig[] = [{
-    label: 'Name',
-    type: 'input',
-    name: 'name',
-    value: '',
-    inputType: 'text',
-    placeholder: 'FVG Dev',
-    validations: [{
-      name: 'required',
-      message: 'Name is required'
+  formConfigurationJson: DynamicFormFieldConfig[] = [{
+    "label": "Name",
+    "type": "input",
+    "name": "name",
+    "value": "",
+    "inputType": "text",
+    "placeholder": "FVG Dev",
+    "validations": [{
+      "name": "required",
+      "message": "Name is required"
     }, {
-      name: 'minlength',
-      message: 'Name is too short',
-      value: 5
+      "name": "minlength",
+      "message": "Name is too short",
+      "value": 5
     }],
   }, {
-    label: 'Email',
-    type: 'input',
-    name: 'email',
-    value: '',
-    inputType: 'email',
-    placeholder: 'community@fvg.dev',
-    validations: [{
-      name: 'required',
-      message: 'Email is required'
+    "label": "Email",
+    "type": "input",
+    "name": "email",
+    "value": "",
+    "inputType": "email",
+    "placeholder": "community@fvg.dev",
+    "validations": [{
+      "name": "required",
+      "message": "Email is required"
     }, {
-      name: 'email',
-      message: 'Email format is not correct'
+      "name": "email",
+      "message": "Email format is not correct"
     }],
   }, {
-    label: 'Role',
-    type: 'select',
-    name: 'role',
-    value: 'user',
-    options: [{
-      value: 'user',
-      text: 'User'
+    "label": "Role",
+    "type": "select",
+    "name": "role",
+    "value": "user",
+    "options": [{
+      "value": "user",
+      "text": "User"
     }, {
-      value: 'admin',
-      text: 'Admin'
+      "value": "admin",
+      "text": "Admin"
     }]
   }, {
-    label: '',
-    type: 'input',
-    inputType: 'radio',
-    name: 'gender',
-    value: '',
-    options: [{
-      value: 'm',
-      text: 'Male'
+    "label": "",
+    "type": "input",
+    "inputType": "radio",
+    "name": "gender",
+    "value": "",
+    "options": [{
+      "value": "m",
+      "text": "Male"
     }, {
-      value: 'f',
-      text: 'Female'
+      "value": "f",
+      "text": "Female"
+    }],
+    "validations": [{
+      "name": "required",
+      "message": "Gender is required"
     }]
   }, {
-    label: 'Submit',
-    type: 'button',
-    name: 'submit',
-    value: ''
+    "label": "Submit",
+    "type": "button",
+    "name": "submit",
+    "value": ""
   }];
 
   displayValues(values) {
