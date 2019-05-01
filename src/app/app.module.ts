@@ -3,20 +3,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { DynamicSelectComponent } from './components/dynamic-form-fields/dynamic-select/dynamic-select.component';
-import { DynamicInputComponent } from './components/dynamic-form-fields/dynamic-input/dynamic-input.component';
-import { DynamicFieldDirective } from './directive/dynamic-field.directive';
-import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
-import { DynamicButtonComponent } from './components/dynamic-form-fields/dynamic-button/dynamic-button.component';
+import { ClassicFormComponent } from './components/classic-form/classic-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DynamicSelectComponent,
-    DynamicInputComponent,
-    DynamicFieldDirective,
-    DynamicFormComponent,
-    DynamicButtonComponent,
+    ClassicFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,10 +17,6 @@ import { DynamicButtonComponent } from './components/dynamic-form-fields/dynamic
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [
-    DynamicSelectComponent,
-    DynamicInputComponent,
-    DynamicButtonComponent,
-  ]
+  entryComponents: []
 })
 export class AppModule { }

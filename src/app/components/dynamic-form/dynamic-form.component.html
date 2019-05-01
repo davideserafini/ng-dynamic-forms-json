@@ -1,4 +1,0 @@
-<form [formGroup]="form" (submit)="onSubmit()">
-  <ng-container *ngFor="let dynamicFieldConfig of dynamicFormConfig;" appDynamicField [fieldConfig]="dynamicFieldConfig" [formGroup]="form">
-  </ng-container>
-</form>

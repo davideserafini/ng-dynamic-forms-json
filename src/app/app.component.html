@@ -1,3 +1,10 @@
-<app-dynamic-form [dynamicFormConfig]="formConfigurationJson" (submitted)="displayValues($event)"></app-dynamic-form>
-
+<div class="form-wrapper">
+  <div class="form">
+    <app-classic-form (submitted)="displayValues($event)"></app-classic-form>
+  </div>
+  <div class="log">
+    <pre>
 {{ formValues | json }}
+    </pre>
+  </div>
+</div>

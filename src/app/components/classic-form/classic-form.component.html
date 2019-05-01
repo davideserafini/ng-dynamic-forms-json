@@ -1,0 +1,68 @@
+<form [formGroup]="form" (submit)="onSubmit()" class="form-wrapper">
+  <div class="form-row">
+    <label for="name">
+      Name
+    </label>
+    <input type="text" formControlName="name" placeholder="FVG Dev" id="name" required>
+
+    <div *ngIf="form.get('name').hasError('required') &&
+                form.touched" class="errorMessage">This field is required</div>
+  </div>
+
+  <div class="form-row">
+    <label for="email">
+      Email
+    </label>
+    <input type="email" formControlName="email" placeholder="community@fvg.dev" id="email" required>
+
+    <div *ngIf="form.get('email').hasError('required') &&
+                form.touched" class="errorMessage">Name is required</div>
+    <div *ngIf="form.get('email').hasError('email') &&
+                form.touched" class="errorMessage">Check email format</div>
+  </div>
+
+  <div class="form-row">
+    <label for="role">
+      User Role
+    </label>
+    <select formControlName="role">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <input type="radio" formControlName="gender" value="m"> Male
+    </label>
+    <label>
+      <input type="radio" formControlName="gender" value="f"> Female
+    </label>
+
+    <div *ngIf="form.get('gender').hasError('required') &&
+                form.touched" class="errorMessage">Gender is required</div>
+  </div>
+
+  <div formGroupName="address">
+    <div class="form-row">
+      <label for="street">
+        Street
+      </label>
+      <input type="text" formControlName="street" id="street">
+    </div>
+
+    <div class="form-row">
+      <label for="zip">
+        Zip
+      </label>
+      <input type="number" formControlName="zip" id="zip">
+    </div>
+    <div *ngIf="form.get('address').hasError('groupRequired') &&
+                form.get('address').touched" class="errorMessage">Address is required</div>
+  </div>
+
+  <div class="form-row">
+    <button type="submit">Send</button>
+  </div>
+
+</form>

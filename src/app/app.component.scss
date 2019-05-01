@@ -1,0 +1,23 @@
+.form-wrapper {
+  display: flex;
+  margin-top: 30px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form {
+  flex-basis: 50%;
+}
+
+.log {
+  flex-basis: 50%;
+  padding-left: 50px;
+}
+
+pre {
+  margin: 0 auto;
+  color: #FFF9F9;
+  font-size: 1.5em;
+  font-family: 'Courier New', Courier, monospace;
+}
