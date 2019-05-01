@@ -19,11 +19,11 @@ export class ClassicFormComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
       role: ['user'],
-      gender: ['', Validators.required],
+      gender: ['', Validators.required]/* ,
       address: this.formBuilder.group({
         street: [''],
         zip: ['']
-      }, { validator: groupRequiredValidator })
+      }, { validator: groupRequiredValidator }) */
     });
   }
 
