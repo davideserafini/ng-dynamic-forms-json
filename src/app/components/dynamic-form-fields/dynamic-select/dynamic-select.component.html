@@ -1,4 +1,4 @@
-<div [formGroup]="formGroup">
+<div [formGroup]="formGroup" class="form-row">
   <label [for]="fieldConfig.name">
     {{ fieldConfig.label }}
   </label>
@@ -7,6 +7,8 @@
   </select>
 
   <div *ngFor="let validation of fieldConfig.validations">
-    <div *ngIf="formGroup.get(fieldConfig.name).hasError(validation.name)">{{validation.message}}</div>
-  </div>
+      <div *ngIf="formGroup.get(fieldConfig.name).hasError(validation.name) &&
+                  formGroup.touched"
+            class="errorMessage">{{ validation.message }}</div>
+    </div>
 </div>

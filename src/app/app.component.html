@@ -1,3 +1,8 @@
-<app-dynamic-form [dynamicFormConfig]="formConfigurationJson" (submitted)="displayValues($event)"></app-dynamic-form>
-
-{{ formValues | json }}
+<div class="form-wrapper">
+  <div class="form">
+    <app-dynamic-form [dynamicFormConfig]="formConfigurationJson" (submitted)="displayValues($event)"></app-dynamic-form>
+  </div>
+  <div class="log">
+    <pre>{{ formValues | json }}</pre>
+  </div>
+</div>

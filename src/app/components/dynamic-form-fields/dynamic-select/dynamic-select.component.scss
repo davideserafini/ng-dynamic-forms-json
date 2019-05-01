@@ -1,0 +1,31 @@
+.form-row {
+  margin: 10px 0px;
+}
+
+label {
+  &::after {
+    content: '';
+    display: block;
+  }
+}
+
+label {
+  font-size: 1.25rem;
+}
+
+select {
+  width: 100%;
+  display: block;
+  margin-top: 5px;
+  height: 45px;
+  padding: 12px 8px;
+  font-size: 1rem;
+}
+
+.errorMessage {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 5px;
+  background: #b71823;
+  color: #fff;
+}

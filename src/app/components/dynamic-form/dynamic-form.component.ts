@@ -56,6 +56,6 @@ export class DynamicFormComponent implements OnInit {
 
   onSubmit() {
     this.form.markAsTouched();
-    this.submitted.emit(this.form.value);
+    this.submitted.emit({ status: this.form.status, values: this.form.value });
   }
 }

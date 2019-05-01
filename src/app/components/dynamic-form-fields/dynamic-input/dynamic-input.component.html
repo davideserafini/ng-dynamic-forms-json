@@ -1,11 +1,19 @@
-<div [formGroup]="formGroup">
-  <label [for]="fieldConfig.name">
+<div [formGroup]="formGroup" class="form-row">
+
+  <label [for]="fieldConfig.name" *ngIf="fieldConfig.label">
     {{ fieldConfig.label }}
   </label>
-  <input [id]="fieldConfig.name" [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType" [placeholder]="fieldConfig.placeholder || ''">
+
+  <input *ngIf="fieldConfig.inputType !== 'radio'" [id]="fieldConfig.name" [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType" [placeholder]="fieldConfig.placeholder || ''">
+  <ng-container *ngIf="fieldConfig.inputType === 'radio'">
+    <label *ngFor="let option of fieldConfig.options">
+      <input [formControlName]="fieldConfig.name" [type]="fieldConfig.inputType" [value]="option.value">{{ option.text }}
+    </label>
+  </ng-container>
 
   <div *ngFor="let validation of fieldConfig.validations">
     <div *ngIf="formGroup.get(fieldConfig.name).hasError(validation.name) &&
-                formGroup.touched">{{ validation.message }}</div>
+                formGroup.touched" class="errorMessage">{{ validation.message }}</div>
   </div>
+
 </div>
