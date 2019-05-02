@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 import { DynamicFormFieldConfig } from '../../models/dynamic-form-field-config';
+import { DynamicFormGroupConfig } from '../../models/dynamic-form-group-config';
 import { Validation } from '../../models/validation';
 
 
@@ -11,7 +12,7 @@ import { Validation } from '../../models/validation';
   styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
-  @Input() dynamicFormConfig: DynamicFormFieldConfig[] = [];
+  @Input() dynamicFormConfig: Array<DynamicFormGroupConfig|DynamicFormFieldConfig> = [];
   @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
 
   form: FormGroup;
@@ -22,14 +23,25 @@ export class DynamicFormComponent implements OnInit {
     this.form = this.createDynamicFormGroup(this.dynamicFormConfig, this.formBuilder.group({}));
   }
 
-  createDynamicFormGroup(formConfig: DynamicFormFieldConfig[], formGroup: FormGroup): FormGroup {
-    formConfig.forEach((fieldConfig: DynamicFormFieldConfig) => {
-      if (fieldConfig.type !== 'button') {
-        const formControl = this.formBuilder.control(
-          fieldConfig.value,
-          this.addValidation(fieldConfig.validations)
-        );
-        formGroup.addControl(fieldConfig.name, formControl);
+  createDynamicFormGroup(formConfig: Array<DynamicFormGroupConfig|DynamicFormFieldConfig>, formGroup: FormGroup): FormGroup {
+    formConfig.forEach((fieldConfig: DynamicFormGroupConfig|DynamicFormFieldConfig) => {
+      if ((fieldConfig as DynamicFormGroupConfig).fields) {
+        // Create a nested form group
+        fieldConfig = fieldConfig as DynamicFormGroupConfig;
+
+        let nestedFormGroup = this.formBuilder.group({}, { validator: this.addValidation(fieldConfig.validations)});
+        nestedFormGroup = this.createDynamicFormGroup(fieldConfig.fields, nestedFormGroup);
+        formGroup.addControl(fieldConfig.name, nestedFormGroup);
+      } else {
+        // Create field
+        fieldConfig = fieldConfig as DynamicFormFieldConfig;
+        if (fieldConfig.type !== 'button') {
+          const formControl = this.formBuilder.control(
+            fieldConfig.value,
+            this.addValidation(fieldConfig.validations)
+          );
+          formGroup.addControl(fieldConfig.name, formControl);
+        }
       }
     });
     return formGroup;
@@ -49,6 +61,8 @@ export class DynamicFormComponent implements OnInit {
         case 'minlength':
           validatorsList.push(Validators.minLength(value as number));
           break;
+        case 'groupRequired':
+          validatorsList.push(groupRequiredValidator);
       }
     });
     return validatorsList;
@@ -59,3 +73,19 @@ export class DynamicFormComponent implements OnInit {
     this.submitted.emit({ status: this.form.status, values: this.form.value });
   }
 }
+
+/**
+ * Validators that test if a FormGroup is required
+ *
+ * @param group
+ */
+const groupRequiredValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  let allValidRequired = true;
+  Object.values(group.controls).forEach(control => {
+    if (Validators.required(control) !== null) {
+      allValidRequired = false;
+    }
+  });
+
+  return allValidRequired ? null : { groupRequired: true };
+};

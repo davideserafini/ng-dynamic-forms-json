@@ -7,6 +7,7 @@ import { DynamicSelectComponent } from './components/dynamic-form-fields/dynamic
 import { DynamicInputComponent } from './components/dynamic-form-fields/dynamic-input/dynamic-input.component';
 import { DynamicFieldDirective } from './directive/dynamic-field.directive';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { DynamicFormGroupComponent } from './components/dynamic-form-group/dynamic-form-group.component';
 import { DynamicButtonComponent } from './components/dynamic-form-fields/dynamic-button/dynamic-button.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { DynamicButtonComponent } from './components/dynamic-form-fields/dynamic
     DynamicInputComponent,
     DynamicFieldDirective,
     DynamicFormComponent,
+    DynamicFormGroupComponent,
     DynamicButtonComponent,
   ],
   imports: [

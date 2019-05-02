@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DynamicFormGroupConfig } from './models/dynamic-form-group-config';
 import { DynamicFormFieldConfig } from './models/dynamic-form-field-config';
 
 @Component({
@@ -10,7 +11,7 @@ export class AppComponent {
   formValues: string;
 
   // This will be received from the network
-  formConfigurationJson: DynamicFormFieldConfig[] = [{
+  formConfigurationJson: Array<DynamicFormGroupConfig|DynamicFormFieldConfig> = [{
     "label": "Name",
     "type": "input",
     "name": "name",
@@ -69,6 +70,25 @@ export class AppComponent {
       "message": "Gender is required"
     }]
   }, {
+    "name": "address",
+    "fields": [{
+      "label": "Street",
+      "type": "input",
+      "inputType": "text",
+      "name": "street",
+      "value": ""
+    }, {
+      "label": "Zip",
+      "type": "input",
+      "inputType": "text",
+      "name": "zip",
+      "value": ""
+    }],
+    "validations": [{
+      "name": "groupRequired",
+      "message": "Address is required"
+    }]
+  },{
     "label": "Submit",
     "type": "button",
     "name": "submit",
