@@ -30,7 +30,7 @@ import { DynamicButtonComponent } from './components/dynamic-form-fields/dynamic
   entryComponents: [
     DynamicSelectComponent,
     DynamicInputComponent,
-    DynamicButtonComponent,
+    DynamicButtonComponent
   ]
 })
 export class AppModule { }

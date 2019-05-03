@@ -71,6 +71,7 @@ export class AppComponent {
     }]
   }, {
     "name": "address",
+    "type": "group",
     "fields": [{
       "label": "Street",
       "type": "input",

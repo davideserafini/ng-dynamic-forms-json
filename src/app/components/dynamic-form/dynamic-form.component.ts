@@ -25,7 +25,7 @@ export class DynamicFormComponent implements OnInit {
 
   createDynamicFormGroup(formConfig: Array<DynamicFormGroupConfig|DynamicFormFieldConfig>, formGroup: FormGroup): FormGroup {
     formConfig.forEach((fieldConfig: DynamicFormGroupConfig|DynamicFormFieldConfig) => {
-      if ((fieldConfig as DynamicFormGroupConfig).fields) {
+      if (fieldConfig.type === 'group') {
         // Create a nested form group
         fieldConfig = fieldConfig as DynamicFormGroupConfig;
 

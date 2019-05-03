@@ -1,10 +1,10 @@
 <ng-container *ngFor="let dynamicFieldConfig of dynamicFormConfig;">
-  <ng-container *ngIf="!dynamicFieldConfig.fields" appDynamicField [fieldConfig]="dynamicFieldConfig"
+  <ng-container *ngIf="dynamicFieldConfig.type !== 'group'" appDynamicField [fieldConfig]="dynamicFieldConfig"
     [formGroup]="formGroup">
   </ng-container>
 
-  <ng-container *ngIf="dynamicFieldConfig.fields">
-    <app-dynamic-form-group *ngIf="dynamicFieldConfig.fields" [dynamicFormConfig]="dynamicFieldConfig.fields"
+  <ng-container *ngIf="dynamicFieldConfig.type === 'group'">
+    <app-dynamic-form-group [dynamicFormConfig]="dynamicFieldConfig.fields"
       [formGroup]="formGroup.get(dynamicFieldConfig.name)"></app-dynamic-form-group>
 
     <div *ngFor="let validation of dynamicFieldConfig.validations">
